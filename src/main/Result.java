@@ -1,4 +1,7 @@
+package main;
+
 public class Result {
+    // Objeto que devolvera el metodo finishRound() para enviar la informacion del codigo y mensaje de la ronda.
     private int code = 0;
     private String message = "";
 

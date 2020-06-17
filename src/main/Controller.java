@@ -1,9 +1,10 @@
-import java.awt.*;
-import java.util.ArrayList;
+package main;
+
 import java.util.List;
 
 public class Controller {
 
+    //Empezar el juego
     public static void startGame(){
         Pattern.generatePattern();
         Pattern.getPatternInGameNextRound();
@@ -14,12 +15,18 @@ public class Controller {
     // 200 = won the round
     // 300 = lost the game
 
+    //Validar cada ronda del juego
     public static Result finishRound(List<Integer> patternInGamePlaying){
         int response = ValidateResult.validate(patternInGamePlaying);
         Result message = validateResponse(response);
         return message;
     }
 
+    /*
+        En este metodo dependiendo de la respuesta de la validacion,
+        llamamos a otros metodos para actualizar el score y resetear la
+        informacion en las listas.
+     */
     private static Result validateResponse(int response){
         Result result =  new Result();
         if(response == 100){
@@ -31,14 +38,21 @@ public class Controller {
             result.setCode(200);
             result.setMessage("Siguiente Ronda");
         }
-        else{
+        else if(response == 300){
             result.setCode(300);
             result.setMessage("Perdio");
             Controller.resetDataLoser();
         }
+        else{
+            result.setCode(400);
+            result.setMessage("Desconocido");
+        }
         return result;
     }
 
+    /*
+        Metodo para resetear la informacion y actualizar el mejor y ultimo score, una ves que el usuario gane el juego
+    */
     private static void resetDataWinner(){
         Pattern.resetPatterns();
         Points.resetCurrentScore();
@@ -46,6 +60,10 @@ public class Controller {
         Points.setLastScore(Points.getCurrentScore());
         Points.setOneAttempts();
     }
+
+    /*
+        Metodo para resetear la informacion, y actualizar el mejor y ultimo score, una ves que el usuario pierda el juego
+    */
 
     private static void resetDataLoser(){
         Pattern.resetPatterns();

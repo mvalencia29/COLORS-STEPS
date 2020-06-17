@@ -1,8 +1,14 @@
+package main;
+
 public class Points {
 
+    // Puntaje actual
     private static int currentScore = 0;
+    // Record actual
     private static int record = 0;
+    // Ultimo Puntaje
     private static int lastScore = 0;
+    // Intentos
     private static int attempts = 0;
 
     public static int getCurrentScore() {

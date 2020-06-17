@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Main {
         // 200 = won the round
         // 300 = lost the game
 
+        //Validar en cada ronda
         Result response = Controller.finishRound(testing);
         System.out.println(response.getCode());
         System.out.println(response.getMessage());
